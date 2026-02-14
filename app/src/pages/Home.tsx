@@ -91,10 +91,10 @@ export default function Home() {
         </Link>
       )}
 
-      <div className="flex gap-6 md:gap-10">
+      <div className="flex gap-4 md:gap-6 flex-wrap justify-center">
         <Link to="/training">
           <motion.div
-            className="w-28 h-36 md:w-36 md:h-44 rounded-2xl flex flex-col items-center justify-center gap-3 border px-4"
+            className="w-24 h-32 md:w-28 md:h-40 rounded-2xl flex flex-col items-center justify-center gap-2 border px-3"
             style={{
               background: "var(--mode-a-bg-elevated)",
               borderColor: "rgba(167, 139, 250, 0.35)",
@@ -104,15 +104,15 @@ export default function Home() {
             whileTap={{ scale: 0.98 }}
           >
             <span className="text-[var(--mode-a-primary)]">
-              <IconMic className="w-10 h-10 md:w-12 md:h-12" />
+              <IconMic className="w-8 h-8 md:w-10 md:h-10" />
             </span>
-            <span className="font-title text-sm md:text-base text-[var(--mode-a-text)]">开放麦</span>
+            <span className="font-title text-xs md:text-sm text-[var(--mode-a-text)]">开放麦</span>
             <span className="text-xs text-[var(--mode-a-text-muted)]">训练营</span>
           </motion.div>
         </Link>
         <Link to="/radio">
           <motion.div
-            className="w-28 h-36 md:w-36 md:h-44 rounded-2xl flex flex-col items-center justify-center gap-3 border px-4"
+            className="w-24 h-32 md:w-28 md:h-40 rounded-2xl flex flex-col items-center justify-center gap-2 border px-3"
             style={{
               background: "var(--mode-a-bg-elevated)",
               borderColor: "rgba(245, 158, 11, 0.35)",
@@ -122,29 +122,44 @@ export default function Home() {
             whileTap={{ scale: 0.98 }}
           >
             <span className="text-[var(--mode-b-primary)]">
-              <IconRadio className="w-10 h-10 md:w-12 md:h-12" />
+              <IconRadio className="w-8 h-8 md:w-10 md:h-10" />
             </span>
-            <span className="font-title text-sm md:text-base text-[var(--mode-a-text)]">深夜</span>
+            <span className="font-title text-xs md:text-sm text-[var(--mode-a-text)]">深夜</span>
             <span className="text-xs text-[var(--mode-a-text-muted)]">电台</span>
           </motion.div>
         </Link>
-      </div>
-
-      <div className="mt-6">
         {chatOpen ? (
           <Link to="/chat">
-            <motion.span
-              className="inline-block px-4 py-2.5 rounded-xl text-sm border border-[var(--mode-a-accent)]/50 text-[var(--mode-a-accent)]"
-              whileHover={{ scale: 1.03 }}
+            <motion.div
+              className="w-24 h-32 md:w-28 md:h-40 rounded-2xl flex flex-col items-center justify-center gap-2 border px-3"
+              style={{
+                background: "var(--mode-a-bg-elevated)",
+                borderColor: "rgba(167, 139, 250, 0.6)",
+                boxShadow: "0 8px 32px rgba(167, 139, 250, 0.2), 0 0 0 1px rgba(167,139,250,0.2)",
+              }}
+              whileHover={{ scale: 1.04, y: -4 }}
               whileTap={{ scale: 0.98 }}
             >
-              和诞总聊聊
-            </motion.span>
+              <span className="text-3xl">🍷</span>
+              <span className="font-title text-xs md:text-sm text-[var(--mode-a-text)]">和诞总</span>
+              <span className="text-xs text-[var(--mode-a-accent)]">聊聊</span>
+            </motion.div>
           </Link>
         ) : (
-          <span className="inline-block px-4 py-2.5 rounded-xl text-sm border border-[var(--mode-a-text-muted)]/40 text-[var(--mode-a-text-muted)]">
-            每晚 20:00 开放 · {formatCountdown(msUntilChat)} 后
-          </span>
+          <motion.div
+            className="w-24 h-32 md:w-28 md:h-40 rounded-2xl flex flex-col items-center justify-center gap-2 border px-3 opacity-60"
+            style={{
+              background: "var(--mode-a-bg-elevated)",
+              borderColor: "rgba(156, 163, 175, 0.3)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(156,163,175,0.1)",
+            }}
+          >
+            <span className="text-3xl grayscale">🍷</span>
+            <span className="font-title text-xs md:text-sm text-[var(--mode-a-text-muted)]">和诞总</span>
+            <span className="text-xs text-[var(--mode-a-text-muted)]">
+              {formatCountdown(msUntilChat)}
+            </span>
+          </motion.div>
         )}
       </div>
     </div>

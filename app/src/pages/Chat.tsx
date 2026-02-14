@@ -37,6 +37,7 @@ export default function Chat() {
   const hasTime = sessionEndsAt == null || (remainingSec != null && remainingSec > 0);
   const canSend = open && !loading && hasTime && !!input.trim();
   const canExtend = open && coins >= CHAT_EXTEND_COST;
+  const isExpired = sessionEndsAt != null && remainingSec != null && remainingSec <= 0;
 
   useEffect(() => {
     if (sessionEndsAt == null) return;
@@ -186,7 +187,9 @@ export default function Chat() {
 
       {sessionEndsAt != null && remainingSec != null && remainingSec <= 0 && (
         <p className="text-center text-sm text-[var(--mode-a-text-muted)] mb-2">
-          本次时间到了，明天 20:00 再来。
+          本次时间到了
+          {open && <button onClick={() => setSessionEndsAt(null)} className="ml-2 text-[var(--mode-a-accent)] underline">重新开始</button>}
+          {!open && "，明天 20:00 再来。"}
         </p>
       )}
 
