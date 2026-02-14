@@ -137,29 +137,52 @@ export default function Chat() {
 
   return (
     <div className="flex-1 flex flex-col h-[calc(100vh-8rem)] max-h-[700px] max-w-lg mx-auto w-full px-4 py-4">
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-4">
         <h1 className="font-title text-lg text-[var(--mode-a-text)]">和诞总聊聊</h1>
-        <div className="flex items-center gap-3">
-          {sessionEndsAt != null && remainingSec != null && (
-            <span className="text-xs text-[var(--mode-a-text-muted)]">
-              剩余 {formatCountdown(countdownMs)}
-            </span>
-          )}
-          {canExtend && sessionEndsAt != null && (
-            <motion.button
-              type="button"
-              onClick={extend}
-              className="text-xs px-2 py-1 rounded-lg border border-[var(--mode-a-accent)] text-[var(--mode-a-accent)]"
-              whileTap={{ scale: 0.98 }}
-            >
-              +2 分钟（{CHAT_EXTEND_COST} 币）
-            </motion.button>
-          )}
-          <Link to="/" className="text-xs text-[var(--mode-a-text-muted)] hover:text-[var(--mode-a-accent)]">
-            回首页
-          </Link>
-        </div>
+        <Link to="/" className="text-xs text-[var(--mode-a-text-muted)] hover:text-[var(--mode-a-accent)]">
+          回首页
+        </Link>
       </div>
+
+      {/* 时间进度条 */}
+      {sessionEndsAt != null && remainingSec != null && (
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-[var(--mode-a-text-muted)]">剩余时间</span>
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-medium text-[var(--mode-a-accent)]">
+                {formatCountdown(countdownMs)}
+              </span>
+              {canExtend && (
+                <motion.button
+                  type="button"
+                  onClick={extend}
+                  className="text-xs px-3 py-1.5 rounded-lg bg-[var(--mode-a-accent)]/10 border border-[var(--mode-a-accent)]/30 text-[var(--mode-a-accent)] hover:bg-[var(--mode-a-accent)]/20 transition-colors"
+                  whileTap={{ scale: 0.98 }}
+                >
+                  +2分钟（{CHAT_EXTEND_COST}币）
+                </motion.button>
+              )}
+            </div>
+          </div>
+          <div className="h-2 bg-[var(--mode-a-bg-elevated)] rounded-full overflow-hidden">
+            <motion.div
+              className="h-full rounded-full transition-all duration-300"
+              style={{
+                width: `${Math.min(100, Math.max(0, (remainingSec / CHAT_DURATION_SEC) * 100))}%`,
+                background: remainingSec > 180
+                  ? 'linear-gradient(90deg, #10b981, #34d399)'
+                  : remainingSec > 60
+                  ? 'linear-gradient(90deg, #f59e0b, #fbbf24)'
+                  : 'linear-gradient(90deg, #ef4444, #f87171)',
+              }}
+              initial={false}
+              animate={{ width: `${Math.min(100, Math.max(0, (remainingSec / CHAT_DURATION_SEC) * 100))}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+        </div>
+      )}
 
       <div
         ref={listRef}
