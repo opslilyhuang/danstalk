@@ -12,7 +12,7 @@ import Chat from "./pages/Chat";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/danstalk">
       <Layout>
         <AnimatePresence mode="wait">
           <Routes>
