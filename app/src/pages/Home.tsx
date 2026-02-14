@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { IconMic, IconRadio } from "../components/icons/NavIcons";
 import { getDanMoodToday } from "../config/exploration";
 import { getLockedHiddenTopicCount } from "../config/topics";
-import { isChatOpen, getMsUntilOpen } from "../config/chat";
+import { isChatOpen } from "../config/chat";
 import { useGameStore } from "../store/gameStore";
 
 export default function Home() {
@@ -14,15 +14,6 @@ export default function Home() {
   const lockedCount = getLockedHiddenTopicCount(unlockedHiddenTopics);
   const showEgg = trainingStreak >= 3;
   const chatOpen = isChatOpen();
-  const msUntilChat = getMsUntilOpen();
-
-  function formatCountdown(ms: number): string {
-    if (ms <= 0) return "0:00";
-    const totalSec = Math.ceil(ms / 1000);
-    const m = Math.floor(totalSec / 60);
-    const s = totalSec % 60;
-    return `${m}:${s.toString().padStart(2, "0")}`;
-  }
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
@@ -156,8 +147,11 @@ export default function Home() {
           >
             <span className="text-3xl grayscale">🍷</span>
             <span className="font-title text-xs md:text-sm text-[var(--mode-a-text-muted)]">和诞总</span>
-            <span className="text-xs text-[var(--mode-a-text-muted)]">
-              {formatCountdown(msUntilChat)}
+            <span className="text-xs text-[var(--mode-a-text-muted)] text-center leading-tight">
+              暂未开放
+            </span>
+            <span className="text-[10px] text-[var(--mode-a-text-muted)]/70 text-center leading-tight">
+              20点-凌晨2点
             </span>
           </motion.div>
         )}

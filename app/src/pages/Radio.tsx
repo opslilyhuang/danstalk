@@ -39,7 +39,12 @@ export default function Radio() {
   };
 
   const handleSubmit = async (content: string) => {
-    const id = addLetter(content);
+    const trimmed = content.trim();
+    if (!trimmed) {
+      setToast("写点什么再投递吧");
+      return;
+    }
+    const id = addLetter(trimmed);
     setCurrentLetterId(id);
     setStep("sending");
     await new Promise((r) => setTimeout(r, 1500));
@@ -47,7 +52,7 @@ export default function Radio() {
 
     const immediate = Math.random() < IMMEDIATE_CHANCE;
     if (immediate) {
-      await runReply(id, content);
+      await runReply(id, trimmed);
     }
   };
 
