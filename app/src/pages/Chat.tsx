@@ -28,7 +28,14 @@ export default function Chat() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [partial, setPartial] = useState("");
-  const [sessionEndsAt, setSessionEndsAt] = useState<number | null>(null);
+  const [sessionEndsAt, setSessionEndsAt] = useState<number | null>(() => {
+    // 初始化时，如果之前有sessionEndsAt但已过期且不在开放时间内，重置为null
+    const stored = null; // 如果有localStorage存储可以从这里读取
+    if (stored && Date.now() > stored) {
+      return null;
+    }
+    return stored;
+  });
   const [countdownMs, setCountdownMs] = useState(0);
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -37,6 +44,15 @@ export default function Chat() {
   const hasTime = sessionEndsAt == null || (remainingSec != null && remainingSec > 0);
   const canSend = open && !loading && hasTime && !!input.trim();
   const canExtend = open && coins >= CHAT_EXTEND_COST;
+  const isExpired = sessionEndsAt != null && remainingSec != null && remainingSec <= 0;
+
+  // 自动清除过期的sessionEndsAt
+  useEffect(() => {
+    if (isExpired && open) {
+      // 在开放时间内且已过期，自动重置以便重新开始
+      setSessionEndsAt(null);
+    }
+  }, [isExpired, open]);
 
   useEffect(() => {
     if (sessionEndsAt == null) return;
@@ -184,10 +200,10 @@ export default function Chat() {
         )}
       </div>
 
-      {sessionEndsAt != null && remainingSec != null && remainingSec <= 0 && (
+      {isExpired && (
         <p className="text-center text-sm text-[var(--mode-a-text-muted)] mb-2">
           本次时间到了
-          {open && <button onClick={() => setSessionEndsAt(null)} className="ml-2 text-[var(--mode-a-accent)] underline">重新开始</button>}
+          {open && <button onClick={() => setSessionEndsAt(null)} className="ml-2 text-[var(--mode-a-accent)] underline hover:text-[var(--mode-a-accent)]">重新开始</button>}
           {!open && "，明天 20:00 再来。"}
         </p>
       )}
@@ -198,7 +214,7 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()}
-          placeholder={remainingSec && remainingSec > 0 ? "说点什么…" : "时间已到"}
+          placeholder={hasTime ? "说点什么…" : "时间已到"}
           disabled={!canSend}
           className="flex-1 rounded-xl px-4 py-3 bg-[var(--mode-a-bg-elevated)] border border-[var(--mode-a-primary)]/30 text-[var(--mode-a-text)] placeholder-[var(--mode-a-text-muted)] focus:outline-none focus:border-[var(--mode-a-primary)] disabled:opacity-50"
         />
