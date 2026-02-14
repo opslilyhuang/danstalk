@@ -1,7 +1,7 @@
 // #60 以用户为中心的设计 - 状态结构围绕用户与信件
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { GameStore, Letter, PublishedSegment, Quote, UserLevel } from "../types";
+import type { GameStore, Letter, PublishedSegment, Quote, UserLevel, AchievementRecord } from "../types";
 import { ACHIEVEMENTS } from "../config/exploration";
 
 const initialUser = {
