@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/* 诞说无妨 - 设计系统：沉浸感深色，非纯黑 */
+:root {
+  /* Mode A 训练营 - 深靛紫底，柔和高亮 */
+  --mode-a-bg: #0d0b14;
+  --mode-a-bg-elevated: #15121f;
+  --mode-a-bg-card: rgba(21, 18, 31, 0.92);
+  --mode-a-primary: #a78bfa;
+  --mode-a-primary-soft: rgba(167, 139, 250, 0.25);
+  --mode-a-accent: #6ee7b7;
+  --mode-a-accent-soft: rgba(110, 231, 183, 0.18);
+  --mode-a-text: #f5f3ff;
+  --mode-a-text-muted: #8b87a0;
+
+  /* Mode B 电台 - 复古暖色 */
+  --mode-b-bg: #1a0f0f;
+  --mode-b-primary: #F59E0B;
+  --mode-b-accent: #7F1D1D;
+  --mode-b-text: #FFF8DC;
+  --mode-b-text-muted: #D4C5B0;
+
+  font-family: "ZCOOL KuaiLe", "Noto Sans SC", system-ui, sans-serif;
+  line-height: 1.6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
+.font-title {
+  font-family: "ZCOOL KuaiLe", "Noto Sans SC", sans-serif;
+}
+
+.font-hand {
+  font-family: "Caveat", "ZCOOL KuaiLe", cursive;
+}
