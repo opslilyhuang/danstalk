@@ -37,7 +37,6 @@ export default function Chat() {
   const hasTime = sessionEndsAt == null || (remainingSec != null && remainingSec > 0);
   const canSend = open && !loading && hasTime && !!input.trim();
   const canExtend = open && coins >= CHAT_EXTEND_COST;
-  const isExpired = sessionEndsAt != null && remainingSec != null && remainingSec <= 0;
 
   useEffect(() => {
     if (sessionEndsAt == null) return;
