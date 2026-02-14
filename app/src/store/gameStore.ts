@@ -160,11 +160,14 @@ export const useGameStore = create<GameStore>()(
           if (s.achievements.some((a) => a.id === id)) return s;
           isNew = true;
           const def = ACHIEVEMENTS.find((a) => a.id === id);
-          const next = {
+          const next: {
+            achievements: AchievementRecord[];
+            unlockedHiddenTopics?: string[];
+          } = {
             achievements: [...s.achievements, { id, unlockedAt: Date.now() }],
           };
           if (def?.hiddenTopic) {
-            (next as { unlockedHiddenTopics: string[] }).unlockedHiddenTopics = [
+            next.unlockedHiddenTopics = [
               ...s.unlockedHiddenTopics,
               def.hiddenTopic,
             ];

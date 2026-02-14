@@ -196,7 +196,7 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()}
-          placeholder={remainingSec > 0 ? "说点什么…" : "时间已到"}
+          placeholder={remainingSec && remainingSec > 0 ? "说点什么…" : "时间已到"}
           disabled={!canSend}
           className="flex-1 rounded-xl px-4 py-3 bg-[var(--mode-a-bg-elevated)] border border-[var(--mode-a-primary)]/30 text-[var(--mode-a-text)] placeholder-[var(--mode-a-text-muted)] focus:outline-none focus:border-[var(--mode-a-primary)] disabled:opacity-50"
         />

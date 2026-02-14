@@ -57,7 +57,7 @@ export default function Dock() {
                   background: active ? "rgba(167, 139, 250, 0.12)" : "transparent",
                 }}
               >
-                <Icon className="w-6 h-6" style={{ color: activeColor }} />
+                <Icon className="w-6 h-6" />
                 <span className="text-[10px] font-medium tracking-wide opacity-90">{label}</span>
               </motion.span>
             </Link>
