@@ -43,6 +43,7 @@ export default function Chat() {
   const remainingSec = sessionEndsAt ? Math.max(0, Math.ceil((sessionEndsAt - Date.now()) / 1000)) : null;
   const hasTime = sessionEndsAt == null || (remainingSec != null && remainingSec > 0);
   const canSend = open && !loading && hasTime && !!input.trim();
+  const canInput = open && !loading && hasTime; // 输入框是否可用（不依赖是否有内容）
   const canExtend = open && coins >= CHAT_EXTEND_COST;
   const isExpired = sessionEndsAt != null && remainingSec != null && remainingSec <= 0;
 
@@ -215,13 +216,13 @@ export default function Chat() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()}
           placeholder={hasTime ? "说点什么…" : "时间已到"}
-          disabled={!canSend}
+          disabled={!canInput}
           className="flex-1 rounded-xl px-4 py-3 bg-[var(--mode-a-bg-elevated)] border border-[var(--mode-a-primary)]/30 text-[var(--mode-a-text)] placeholder-[var(--mode-a-text-muted)] focus:outline-none focus:border-[var(--mode-a-primary)] disabled:opacity-50"
         />
         <motion.button
           type="button"
           onClick={send}
-          disabled={!canSend}
+          disabled={!canInput}
           className="px-5 py-3 rounded-xl font-medium bg-[var(--mode-a-primary)] text-white disabled:opacity-40 disabled:cursor-not-allowed"
           whileTap={canSend ? { scale: 0.98 } : {}}
         >
