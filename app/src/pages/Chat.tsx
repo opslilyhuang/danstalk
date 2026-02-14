@@ -102,7 +102,7 @@ export default function Chat() {
           <p className="text-4xl mb-4">🍷</p>
           <h1 className="font-title text-xl text-[var(--mode-a-text)] mb-2">随便聊聊</h1>
           <p className="text-[var(--mode-a-text-muted)] text-sm mb-4">
-            每晚 <strong className="text-[var(--mode-a-accent)]">20:00—24:00</strong>（中国时间）开放，和诞总随便唠唠。
+            每晚 <strong className="text-[var(--mode-a-accent)]">20:00—02:00</strong>（中国时间）开放，和诞总随便唠唠。
           </p>
           <p className="text-[var(--mode-a-text-muted)] text-sm mb-6">
             距离开放还有 <span className="text-[var(--mode-a-accent)] font-medium">{formatCountdown(ms)}</span>

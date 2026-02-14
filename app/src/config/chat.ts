@@ -1,4 +1,4 @@
-// 随便聊聊 - 开放时间（中国时间 20:00-23:59）与时长配置
+// 随便聊聊 - 开放时间（中国时间 20:00-02:00）与时长配置
 
 const TZ = "Asia/Shanghai";
 
@@ -13,10 +13,10 @@ function getChinaHour(): number {
   return p ? parseInt(p.value, 10) : 0;
 }
 
-/** 当前是否在中国时间 20:00-23:59 之间（含 20:00，不含 0:00） */
+/** 当前是否在中国时间 20:00-02:00 之间（含 20:00-23:59 和 00:00-02:00） */
 export function isChatOpen(): boolean {
   const hour = getChinaHour();
-  return hour >= 20 && hour <= 23;
+  return hour >= 20 || hour < 2;
 }
 
 /** 距离下次开放（今晚或明晚 20:00 中国时间）的毫秒数；若当前在开放时段则返回 0 */
@@ -30,9 +30,11 @@ export function getMsUntilOpen(): number {
   const [h, m] = fmt.format(new Date()).split(":").map((x) => parseInt(x, 10));
   const minutesNow = h * 60 + m;
   const openAt = 20 * 60;
-  const closeAt = 24 * 60;
-  if (minutesNow >= openAt && minutesNow < closeAt) return 0;
-  const nextOpenMinutes = minutesNow < openAt ? openAt - minutesNow : 24 * 60 - minutesNow + openAt;
+  const closeAt = 2 * 60; // 凌晨 02:00 = 2*60 分钟
+  // 开放时段：20:00-23:59 和 00:00-02:00
+  if (minutesNow >= openAt || minutesNow < closeAt) return 0;
+  // 关闭时段：02:00-20:00
+  const nextOpenMinutes = openAt - minutesNow;
   return nextOpenMinutes * 60 * 1000;
 }
 

@@ -106,7 +106,7 @@ export default function Guide() {
               <h3 className="text-[var(--mode-a-text)] font-medium text-sm mb-2">和诞总聊聊</h3>
               <p className="text-[var(--mode-a-text-muted)] text-xs mb-2">
                 <span className="text-[var(--mode-a-text)]">干啥的：</span>
-                每晚 <strong className="text-[var(--mode-a-accent)]">20:00—24:00</strong>（中国时间）开放，和诞总多轮随便聊，不写信、不写段子，纯唠嗑。
+                每晚 <strong className="text-[var(--mode-a-accent)]">20:00—02:00</strong>（中国时间）开放，和诞总多轮随便聊，不写信、不写段子，纯唠嗑。
               </p>
               <p className="text-[var(--mode-a-text-muted)] text-xs">
                 <span className="text-[var(--mode-a-accent)]">小贴士：</span>
@@ -157,7 +157,7 @@ export default function Guide() {
         <motion.section variants={item}>
           <h2 className="text-[var(--mode-a-primary)] font-medium text-base mb-2">还有啥好玩的？</h2>
           <ul className="text-[var(--mode-a-text-muted)] text-sm space-y-1.5">
-            <li><strong className="text-[var(--mode-a-text)]">随便聊聊</strong>：每晚 20:00（中国时间）开放，多轮唠嗑约 5 分钟，可花币延长</li>
+            <li><strong className="text-[var(--mode-a-text)]">随便聊聊</strong>：每晚 20:00—02:00（中国时间）开放，多轮唠嗑约 5 分钟，可花币延长</li>
             <li><strong className="text-[var(--mode-a-text)]">诞总今日心情</strong>：首页每天不一样，纯看命</li>
             <li><strong className="text-[var(--mode-a-text)]">台上观众反应</strong>：可能哄笑、冷场、再来一个，每次随机</li>
             <li><strong className="text-[var(--mode-a-text)]">电台开场白</strong>：回信前随机一句诞总状态</li>
@@ -177,7 +177,7 @@ export default function Guide() {
           <ol className="text-[var(--mode-a-text)] text-sm space-y-2 list-decimal list-inside">
             <li><strong>想练段子</strong> → 进开放麦，选题、写（最多 1200 字）、上台、听点评、同题可「再写一次」接着改；领奖励</li>
             <li><strong>想唠嗑</strong> → 进深夜电台，写信、等回复，想多听就花 1 币「多说一点」</li>
-            <li><strong>想随便聊</strong> → 每晚 20:00（中国时间）首页点「和诞总聊聊」，多轮聊约 5 分钟，可花 3 币延长 2 分钟</li>
+            <li><strong>想随便聊</strong> → 每晚 20:00—02:00（中国时间）首页点「和诞总聊聊」，多轮聊约 5 分钟，可花 3 币延长 2 分钟</li>
             <li><strong>想攒东西</strong> → 多写拿币、收藏金句、解锁成就和隐藏话题</li>
           </ol>
           <p className="text-[var(--mode-a-text-muted)] text-xs mt-3">
